@@ -1,4 +1,17 @@
 <h3>Edit Product List</h3>
+<% if flash[:notice] %>
+<div class="<%= flash[:notice]["class"] %>">
+  <%= flash[:notice]["message"] %>
+</div>
+<% end %>
+
+<% if flash[:bad] %>
+<div class="<%= flash[:bad]["class"] %>">
+  <%= flash[:bad]["message"] %>
+</div>
+<% end %>
+
+
 <%= form_tag(class:"form-group") do %>
   <%= label_tag "Product Name:" %>
   <%= text_field_tag :name %>
