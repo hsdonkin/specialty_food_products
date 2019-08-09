@@ -10,35 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_153856) do
+ActiveRecord::Schema.define(version: 2019_08_09_174839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "country_of_origins", force: :cascade do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name"
-  end
-
-  create_table "product_reviews", force: :cascade do |t|
-    t.bigint "products_id"
-    t.bigint "reviews_id"
-    t.index ["products_id"], name: "index_product_reviews_on_products_id"
-    t.index ["reviews_id"], name: "index_product_reviews_on_reviews_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "cost"
-    t.bigint "country_of_origins_id"
-    t.index ["country_of_origins_id"], name: "index_products_on_country_of_origins_id"
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_products_on_country_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "author"
-    t.text "content_body"
     t.integer "rating"
-    t.bigint "products_id"
-    t.index ["products_id"], name: "index_reviews_on_products_id"
+    t.text "content_body"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_reviews_on_product_id"
   end
 
 end
