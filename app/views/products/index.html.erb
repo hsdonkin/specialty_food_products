@@ -1,14 +1,18 @@
-<h2>Products Available:</h2>
-<% if @products.any? %>
-<div class="card-columns">
-  <% @products.each do |p| %>
-  <div class="card">
-    <div class="card-body">
-      <h3><%=link_to p.name, product_path(p) %></h3>
-      <p>From <%= @countries.find_by_id(p.country_id).name  %></p>
-      <p>Description: <%= Faker::Coffee.notes %></p>
+<div class="container">
+  <h2>Products Available:</h2>
+  <% if @products.any? %>
+    <div class="card-columns">
+
+      <% @products.each do |p| %>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title"><%=link_to p.name, product_path(p) %></h3>
+            <p>From <%= @countries.find_by_id(p.country_id).name  %></p>
+            <p>Description: <%= Faker::Coffee.notes %></p>
+          </div>
+        </div>
+      <% end %>
+
     </div>
-  </div>
   <% end %>
 </div>
-<% end %>

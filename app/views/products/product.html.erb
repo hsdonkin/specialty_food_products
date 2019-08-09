@@ -1,0 +1,21 @@
+<div class="container">
+  <h2><%= @product.name %></h2>
+  <p>From: <%= @country.name %></p>
+
+  <% if @reviews.any? %>
+    <div class="card-columns">
+
+      <% @reviews.each do |r| %>
+      <div class="card">
+        <div class="card-body">
+          <h3><%=r.author%></h3>
+          <h4>Rating: <%= r.rating %></h4>
+          <p> <%= r.content_body %></p>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
+  <% end %>
+
+</div>
