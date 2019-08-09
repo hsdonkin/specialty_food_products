@@ -20,5 +20,10 @@ end
   # this gets the collection of all countries available, then generates a random index number
   # the index number is then selected from countries
   # this future proofs the database, because you can't just select a random ID with rand(10), because the next time it is seeded the IDs will be incremented by 10
-  Product.create!(:name => Faker::Food.ingredient, :cost => Faker::Number.decimal(l_digits: 2, r_digits: 2), :country_id => @countries[random_country_index].id)
+  product = Product.create!(:name => Faker::Food.ingredient, :cost => Faker::Number.decimal(l_digits: 2, r_digits: 2), :country_id => @countries[random_country_index].id)
+
+  5.times do
+    #product here is whatever product is created in the major loop
+    Review.create!(:author => Faker::Name.name, :content_body => Faker::GreekPhilosophers.quote, :rating => (1+ rand(5)), :product_id => product.id)
+  end
 end
