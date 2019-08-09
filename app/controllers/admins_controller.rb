@@ -2,13 +2,13 @@ class AdminsController < ApplicationController
 
   def show
     @countries = Country.all
+    @products = Product.all
     render :edit_products
   end
 
   def create
     # this has to be here for the refresh
     @countries = Country.all
-
     name = params[:name]
     price = params[:price]
     country_id = params["Country of Origin"].to_i
@@ -23,6 +23,8 @@ class AdminsController < ApplicationController
       flash[:bad] = {:message => "Whoops! Try again!", :class => "alert alert-danger"}
       redirect_to :controller => 'admins', :action => 'show'
     end
+
+
 
   end
 end
