@@ -1,1 +1,10 @@
 <h3>Edit Product List</h3>
+<%= form_tag(class:"form-group") do %>
+  <%= label_tag "Product Name:" %>
+  <%= text_field_tag :name %>
+  <%= label_tag "Price:" %>
+  <%= text_field_tag :price %>
+  <%= label_tag "Country of Origin:" %>
+  <%= select_tag "Country of Origin", options_from_collection_for_select(@countries, "id", "name")%>
+  <%= submit_tag "Add Product" %>
+<% end %>
