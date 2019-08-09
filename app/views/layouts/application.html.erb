@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FoodProductsSite</title>
+    <title>It's-a Me, Mario's Specialty Food Products</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <h1>Specialty Food Products</h1>
+      <nav class="">
+        <%= link_to 'Home', root_path, :class=>"btn btn-outline-primary" %>
+        <%= link_to 'Products', products_path, :class=>"btn btn-outline-primary"%>
+        <%= form_tag('/products', method:"post", class:"form-inline", style:"float: right;") do%>
+          <%= text_field_tag(:search)%>
+          <%= submit_tag('Search') %>
+        <% end %>
+      </nav>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
