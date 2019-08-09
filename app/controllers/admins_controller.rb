@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
 
   def show
-    @countries = CountryOfOrigin.all
+    @countries = Country.all
     render :edit_products
   end
 
