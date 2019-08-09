@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
+  resource :admin do
+  end
+
   resources :products do
     resources :reviews
   end
