@@ -12,8 +12,11 @@ class AdminsController < ApplicationController
     name = params[:name]
     price = params[:price]
     country_id = params["Country of Origin"].to_i
-    # if the product is made successfully
-    if Product.create!(:name => name, :cost => price, :country_id => country_id)
+    product = Product.new(:name => name, :cost => price, :country_id => country_id)
+    # used to have a create! here buuuut it would bug out the entire app if it failed validation
+    #so now we check if it's valid separately, then save it
+    if product.valid?
+      product.save
       flash[:notice] = {:message => "#{name} added successfully!", :class => "alert alert-success"}
       redirect_to :controller => 'admins', :action => 'show'
     else
