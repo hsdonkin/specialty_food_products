@@ -10,6 +10,13 @@
       <div class="form-holder">
         <%= form_tag product_reviews_path(@product) do %>
           <h4>Review Product</h4>
+          <% if flash[:notice] %>
+            <%   flash[:notice]["message"].each do |m| %>
+              <div class="<%= flash[:notice]["class"] %>">
+                <%= m %>
+              </div>
+            <% end %>
+          <% end %>
           <%= label_tag 'Rating' %>
           <%= select_tag :rating, options_for_select([ "1", "2", "3", "4", "5" ], "5") %>
           <%= label_tag 'Review:' %>
