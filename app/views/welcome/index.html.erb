@@ -1,15 +1,20 @@
 <div class="container">
   <h3>Welcome to Specialty Food Products!</h3>
-  <h2>Most Reviewed Product: <%= link_to Product.most_reviewed.name, product_path(Product.most_reviewed) %></h2>
-</div>
+  <h4>Most Reviewed Product: <%= link_to Product.most_reviewed.name, product_path(Product.most_reviewed) %></h2>
+  <h4>Most Recent Products Added:</h2>
 
-<h2>Most Recent Products Added:</h2>
-
-<% @most_recent = Product.most_recent %>
-<div class="card">
-  <div class="card-body">
-    <h3 class="card-title"></h3>
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <% if Product.most_recent.any? %>
+  <% @most_recent = Product.most_recent %>
+  <div class="card-columns">
+    <% @most_recent.each do |p| %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to p.name, product_path(p) %></h3>
+        <p>Rating: <%= p.average_rating %></p>
+        <p class="card-text"><%= Faker::Coffee.notes %></p>
+      </div>
+    </div>
+    <% end %>
   </div>
+  <% end %>
 </div>
