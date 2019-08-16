@@ -11,7 +11,7 @@ Product.destroy_all
 Review.destroy_all
 User.destroy_all
 
-30.times do
+50.times do
   faker_username = Faker::Internet.username
   faker_email = Faker::Internet.email
   faker_password = Faker::Internet.password
@@ -27,7 +27,7 @@ user.save
   Country.create!(:name => Faker::Address.country)
 end
 
-10.times do
+100.times do
   @countries = Country.all
   random_country_index = rand(9)
   # this gets the collection of all countries available, then generates a random index number
@@ -37,6 +37,13 @@ end
 
   5.times do
     #product here is whatever product is created in the major loop
-    Review.create!(:author => Faker::Name.name, :content_body => Faker::GreekPhilosophers.quote, :rating => (1+ rand(5)), :product_id => product.id)
+    # find a random user from all users
+    user = User.all.sample
+    # if it gets the admin account back, just go and find another account
+    while user.username == "admin"
+      user = User.all.sample
+    end
+
+    user.reviews.create!(:content_body => Faker::GreekPhilosophers.quote, :rating => (1+ rand(5)), :product_id => product.id)
   end
 end

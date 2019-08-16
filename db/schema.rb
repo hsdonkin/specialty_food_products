@@ -30,15 +30,16 @@ ActiveRecord::Schema.define(version: 2019_08_16_153930) do
     t.integer "rating"
     t.text "content_body"
     t.bigint "product_id"
-    t.bigint "users_id"
+    t.bigint "user_id"
     t.index ["product_id"], name: "index_reviews_on_product_id"
-    t.index ["users_id"], name: "index_reviews_on_users_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.boolean "admin", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -48,5 +49,4 @@ ActiveRecord::Schema.define(version: 2019_08_16_153930) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "reviews", "users", column: "users_id"
 end
