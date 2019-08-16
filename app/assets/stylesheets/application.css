@@ -12,3 +12,18 @@
  */
 /* *= require_tree .
 *= require_self */
+
+
+.navbar form{
+  margin-left: 1rem;
+}
+
+.navbar input{
+  display: inline-block;
+  margin-bottom: 0;
+
+}
+
+.navbar a{
+  margin-top: 1rem;
+}

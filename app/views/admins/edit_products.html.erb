@@ -36,7 +36,8 @@
         <% @products.each do |p| %>
           <div class="container">
             <%= p.name %>
-              <%= link_to "Delete", product_path(p), :method=>"delete", :class=>"btn btn-danger btn-xs" %>
+
+              <%= link_to "Delete ", product_path(p), :method=>"delete", :class=>"btn btn-danger btn-sm" %>
 
             <hr>
           </div>
@@ -59,7 +60,7 @@
                 <%= text_field_tag :country, @countries.find_by_id(p.country_id).name %>
                 <%= label_tag "Price" %>
                 <%= text_field_tag :cost, "$#{p.cost.to_f}" %>
-                <%= submit_tag "Update",:class=>"btn btn-danger btn-xs" %>
+                <%= submit_tag "Update",:class=>"btn btn-danger btn-sm" %>
               </div>
               <hr>
             <% end %>

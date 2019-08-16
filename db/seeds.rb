@@ -20,20 +20,22 @@ User.destroy_all
 end
 
 # Make one admin account
-user = User.new(:username => "admin", :email => "admin@admin.com", :password => "admin")
+user = User.new(:username => "admin", :email => "admin@admin.com", :password => "adminadmin")
+user.admin = true
 user.save
 
 10.times do
   Country.create!(:name => Faker::Address.country)
 end
 
+# USA! USA! USA!
+Country.create!(:name => "USA")
+
 100.times do
-  @countries = Country.all
-  random_country_index = rand(9)
-  # this gets the collection of all countries available, then generates a random index number
-  # the index number is then selected from countries
-  # this future proofs the database, because you can't just select a random ID with rand(10), because the next time it is seeded the IDs will be incremented by 10
-  product = Product.create!(:name => Faker::Food.ingredient, :cost => Faker::Number.decimal(l_digits: 2, r_digits: 2), :country_id => @countries[random_country_index].id)
+  @country = Country.all.sample
+
+  # this gets the collection of all countries available, then picks a random country
+  product = @country.products.create!(:name => Faker::Food.ingredient, :cost => Faker::Number.decimal(l_digits: 2, r_digits: 2))
 
   5.times do
     #product here is whatever product is created in the major loop

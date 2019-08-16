@@ -11,13 +11,30 @@
   </head>
 
   <body>
-    <div class="container">
-      <h1>Specialty Food Products</h1>
+    <div class="navbar">
+      <h1 class="navbar-brand">Specialty Food Products</h1>
       <nav class="">
-        <%= link_to 'Home', root_path, :class=>"btn btn-outline-primary" %>
-        <%= link_to 'Products', products_path, :class=>"btn btn-outline-primary"%>
-        <%= link_to 'Admin', admin_path, :class=>"btn btn-outline-primary"  %>
-        <%= form_tag('/products', method:"post", class:"form-inline", style:"float: right;") do%>
+
+          <%= link_to 'Home', root_path, :class=>"" %>
+          |
+          <%= link_to 'Products', products_path, :class=>""%>
+          |
+          <% if !current_user %>
+            <%= link_to 'Sign Up', new_user_registration_path, :class=>""  %>
+            |
+            <%= link_to 'Sign In', new_user_session_path %>
+          <% else %>
+            <% if current_user.admin == true %>
+              <%= link_to 'Admin', admin_path %>
+              |
+            <% end %>
+            <%= current_user.email %>
+            |
+            <%= link_to 'Sign Out', destroy_user_session_path %>
+
+          <% end %>
+
+        <%= form_tag('/products', method:"post", class:"", style:"float: right;") do%>
           <%= text_field_tag(:search)%>
           <%= submit_tag('Search') %>
         <% end %>

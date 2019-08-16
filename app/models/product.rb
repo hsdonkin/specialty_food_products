@@ -9,4 +9,9 @@ class Product < ApplicationRecord
   validates :country_id, presence: true
 
   validates :cost, presence: true
+
+  scope :most_recent, -> {sort(created_at: :asc)}
+
+  scope :usa_only, -> {where(country_id: Country.find_by_name("USA").id.to_s)}
+
 end
