@@ -9,6 +9,19 @@
 Country.destroy_all
 Product.destroy_all
 Review.destroy_all
+User.destroy_all
+
+30.times do
+  faker_username = Faker::Internet.username
+  faker_email = Faker::Internet.email
+  faker_password = Faker::Internet.password
+  user = User.new(:username => faker_username, :email => faker_email, :password => faker_password)
+  user.save
+end
+
+# Make one admin account
+user = User.new(:username => "admin", :email => "admin@admin.com", :password => "admin")
+user.save
 
 10.times do
   Country.create!(:name => Faker::Address.country)
