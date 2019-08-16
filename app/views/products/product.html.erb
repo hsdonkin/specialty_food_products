@@ -1,6 +1,25 @@
 <div class="container">
-  <h2><%= @product.name %></h2>
-  <p>From: <%= @country.name %></p>
+  <div class="card product-display">
+    <div class="card-body">
+      <h2 class="card-title"><%= @product.name %></h2>
+      <p>From: <%= @country.name %></p>
+      <p>Price: $<%= @product.cost %> <%= link_to 'Buy Now', "#", :class=>"btn btn-success btn-sm" %></p>
+
+      <%= image_tag 'https://picsum.photos/300/300' %>
+
+      <div class="form-holder">
+        <%= form_tag product_reviews_path(@product) do %>
+          <h4>Review Product</h4>
+          <%= label_tag 'Rating' %>
+          <%= select_tag :rating, options_for_select([ "1", "2", "3", "4", "5" ], "5") %>
+          <%= label_tag 'Review:' %>
+          <%= text_area_tag :content_body%>
+          <%= submit_tag "Add Review", :class=>"btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
 
   <% if @reviews.any? %>
     <div class="card-columns">
