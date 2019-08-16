@@ -8,7 +8,7 @@
       <% @reviews.each do |r| %>
       <div class="card">
         <div class="card-body">
-          <h3><%=r.username%></h3>
+          <h3><%=User.find(r.user_id).username%></h3>
           <h4>Rating: <%= r.rating %></h4>
           <p> <%= r.content_body %></p>
         </div>

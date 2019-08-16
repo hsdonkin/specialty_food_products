@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2019_08_16_153930) do
     t.string "name"
     t.decimal "cost"
     t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_products_on_country_id"
   end
 

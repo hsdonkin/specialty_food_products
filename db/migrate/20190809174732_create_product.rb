@@ -5,6 +5,7 @@ class CreateProduct < ActiveRecord::Migration[5.2]
       t.decimal :cost
       t.belongs_to :country, index: true
 
+      t.timestamps
     end
   end
 end

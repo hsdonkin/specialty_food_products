@@ -37,7 +37,7 @@ Country.create!(:name => "USA")
   # this gets the collection of all countries available, then picks a random country
   product = @country.products.create!(:name => Faker::Food.ingredient, :cost => Faker::Number.decimal(l_digits: 2, r_digits: 2))
 
-  5.times do
+  (rand(10) + 1).times do
     #product here is whatever product is created in the major loop
     # find a random user from all users
     user = User.all.sample
@@ -46,6 +46,6 @@ Country.create!(:name => "USA")
       user = User.all.sample
     end
 
-    user.reviews.create!(:content_body => Faker::GreekPhilosophers.quote, :rating => (1+ rand(5)), :product_id => product.id)
+    user.reviews.create(:content_body => Faker::Hipster.paragraph, :rating => (1+ rand(5)), :product_id => product.id)
   end
 end
