@@ -37,4 +37,4 @@ _Link to GitHub repo:_
 
 * _open source_
 
-Copyright (c) 2019 **_Elite Five_**
+Copyright (c) 2019 **_HSD_**
