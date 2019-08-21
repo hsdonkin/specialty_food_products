@@ -15,25 +15,36 @@ class Product < ApplicationRecord
   scope :usa_only, -> {where(country_id: Country.find_by_name("USA").id.to_s)}
 
 
-  # scope :most_reviewed -> {where()}
   # ok so there is not really a great way to do most reviewed, documentation suggests counter_cache: true but that doesn't really work for some reason
+  scope :most_reviewed, -> {
+    # get ready to count products id
+    # add in the reviews
+    # group them by product id
+    # sort them by the most counted ID
+    select("products.id, count(products.id) as reviews_count")
+    .joins(:reviews)
+    .group("products.id")
+    .order("reviews_count DESC")
+    .limit(1)
+  }
 
-  def self.most_reviewed
-    # get all the products
-    products = Product.all
-    most_reviewed_product = nil
-    most_reviewed_count = 0
-    products.each do |p|
-      # establish how many reviews there are for the product
-      current_review_count = p.reviews.count
-      # if this product has more reviews than the currently most reviewed product, update that variable
-      if current_review_count > most_reviewed_count
-        most_reviewed_product = p
-        most_reviewed_count = current_review_count
-      end
-    end
-    return most_reviewed_product
-  end
+
+  # def self.most_reviewed
+  #   # get all the products
+  #   products = Product.all
+  #   most_reviewed_product = nil
+  #   most_reviewed_count = 0
+  #   products.each do |p|
+  #     # establish how many reviews there are for the product
+  #     current_review_count = p.reviews.count
+  #     # if this product has more reviews than the currently most reviewed product, update that variable
+  #     if current_review_count > most_reviewed_count
+  #       most_reviewed_product = p
+  #       most_reviewed_count = current_review_count
+  #     end
+  #   end
+  #   return most_reviewed_product
+  # end
 
   # finds all ratings, sums them, then divides sum by review count
   def average_rating

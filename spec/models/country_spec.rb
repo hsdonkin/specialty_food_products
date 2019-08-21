@@ -1,14 +1,22 @@
 require 'rails_helper'
 require 'factory_bot'
+require 'shoulda-matchers'
 
-FactoryBot.find_definitions
+
 RSpec.describe Country do
+  
+  before(:each) do
+    Country.destroy_all
+  end
+
   it "will have a name" do
+
     country = FactoryBot.create(:country)
     expect(country.name).to match (/[a-z]+/)
   end
 
   it "will be a unique list of 10 countries" do
+
     duplicate = false
     names = []
     countries = FactoryBot.create_list(:country, 10)
