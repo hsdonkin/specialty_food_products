@@ -44,13 +44,14 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'devise'
   gem 'pry'
-  gem 'factory_bot'
 
 end
 
 group :test do
   gem 'factory_bot'
+  # shoulda matchers shoulda learned to work :|
   gem 'shoulda-matchers', require: false
+  gem 'capybara'
 end
 
 group :development do
