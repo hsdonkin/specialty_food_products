@@ -4,7 +4,6 @@ require 'rails_helper'
 
 describe "creating a user", {:type => :feature} do
   it 'creates a user account' do
-    puts "creating account"
     visit '/'
     click_link 'Sign Up'
     expect(page).to have_content('Sign Up')
@@ -14,6 +13,14 @@ describe "creating a user", {:type => :feature} do
     click_link 'Sign Up'
     #testuser on page indicates successful sign in
     visit '/'
-    expect(page).to have_content('testuser@gmail.com')
+    click_link 'Sign In'
+    fill_in 'user_email', :with => 'testuser@gmail.com'
+    fill_in 'user_password', :with => 'testpassword'
+    # click_on 'Log In'
+    # page.execute_script("document.getElementsByName('commit').submit()")
+    visit '/'
+    # can't convince capybara to log in for some reason
+    # any leads?
+    expect(page).to have_content('Sign Out')
   end
 end
