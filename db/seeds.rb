@@ -12,9 +12,9 @@ Review.destroy_all
 User.destroy_all
 
 50.times do
-  faker_username = Faker::Internet.username
-  faker_email = Faker::Internet.email
-  faker_password = Faker::Internet.password
+  faker_username = Faker::Internet.unique.username
+  faker_email = Faker::Internet.unique.email
+  faker_password = Faker::Internet.unique.password
   user = User.new(:username => faker_username, :email => faker_email, :password => faker_password)
   user.save
 end
@@ -25,7 +25,7 @@ user.admin = true
 user.save
 
 10.times do
-  Country.create!(:name => Faker::Address.country)
+  Country.unique.create!(:name => Faker::Address.country)
 end
 
 # USA! USA! USA!

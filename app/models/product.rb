@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   validates :name, presence: true
 
   # this is country_of_origin, not country_of_origins_id because of some rails magic
-  validates :country_id, presence: true
+  # validates :country_id, presence: true
 
   validates :cost, presence: true
 

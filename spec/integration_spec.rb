@@ -7,11 +7,13 @@ describe "creating a user", {:type => :feature} do
     puts "creating account"
     visit '/'
     click_link 'Sign Up'
-    fill_in 'user[:email]', :with => 'testuser@gmail.com'
-    fill_in 'user[:password]', :with => 'testpassword'
-    fill_in 'user[:password_confirmation]', :with => 'testpassword'
+    expect(page).to have_content('Sign Up')
+    fill_in 'user_email', :with => 'testuser@gmail.com'
+    fill_in 'user_password', :with => 'testpassword'
+    fill_in 'user_password_confirmation', :with => 'testpassword'
     click_link 'Sign Up'
     #testuser on page indicates successful sign in
+    visit '/'
     expect(page).to have_content('testuser@gmail.com')
   end
 end
